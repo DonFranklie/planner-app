@@ -1,6 +1,10 @@
+// Custom Stopwatch Widget Component
 import React, { useEffect, useState } from 'react';
 
+// Displays a stopwatch with start, stop, and reset functionality
+
 export default function MyCustomWidget() {
+  // State to store stopwatch data
   const [timerListData, setTimerListData] = useState({
     time: 0,
     isRunning: false,
@@ -24,6 +28,8 @@ export default function MyCustomWidget() {
     return hours + ':' + minutes + ':' + seconds;
   };
 
+    // Effect to start or stop the stopwatch
+
   useEffect(() => {
     let interval = null;
     if (timerListData.isRunning) {
@@ -37,15 +43,29 @@ export default function MyCustomWidget() {
     return () => clearInterval(interval);
   }, [timerListData.isRunning]);
 
+    // JSX and UI rendering
+
   return (
     <div style={{ minWidth: 300 }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'row' }}>
+              
+              {/* Widget title */}
+
         <p>Stopwatch</p>
       </div>
+
+            {/* Stopwatch display */}
+
       <div className='timer-container'>
+
+                {/* Displays the formatted time */}
+
         <div className='timer-display'>
           <p style={{ textAlign: 'center', fontWeight: 'bold', fontSize: 20 }}>{tidyTime(timerListData.time)}</p>
         </div>
+
+                {/* Stopwatch controls */}
+
         <div
           className='timer-controls'
           style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
@@ -67,6 +87,8 @@ export default function MyCustomWidget() {
           >
             {timerListData.isRunning ? 'Stop' : 'Start'}
           </button>
+
+                    {/* Reset button */}
           <button
             style={{
               background: 'none',
